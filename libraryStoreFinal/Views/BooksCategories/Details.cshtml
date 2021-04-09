@@ -1,0 +1,34 @@
+﻿@model libraryStoreFinal.ViewModels.BookCategoriesViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BooksCategories</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Books.BookTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Books.BookTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categories.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { bookId = Model.Books.BookID, categoryId = Model.Categories.CategoryID}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

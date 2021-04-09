@@ -1,0 +1,161 @@
+﻿@model libraryStoreFinal.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Book Details</h2>
+<hr />
+<div class="row">
+    <div class="col-md-3 col-12">
+        <img src="@Url.Content(Model.BookCover)" alt="@(Model.BookTitle) book image" width="250" height="250" />
+    </div>
+    <div class="col-md-9 col-12">
+        
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Country.CountryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Country.CountryName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Form.FormTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Form.FormTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Language.LanguageName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Language.LanguageName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Publisher.PublisherName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Publisher.PublisherName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status.StatusName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status.StatusName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BookTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BookTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DepositeNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DepositeNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PublishYear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PublishYear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PagesNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PagesNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.KeyWords)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.KeyWords)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
+
+            
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Code)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Code)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ISBN)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BarCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BarCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PositionAtLibrary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PositionAtLibrary)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

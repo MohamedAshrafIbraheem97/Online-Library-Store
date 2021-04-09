@@ -1,0 +1,33 @@
+﻿@model IEnumerable<libraryStoreFinal.Models.Book>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Online Library Store Manger</h1>
+</div>
+
+<div class="row">
+    @foreach (var book in Model)
+    {
+        <div class="col-md-4 col-12">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@book.BookTitle</h5>
+                    @if (book.Quantity == 0)
+                    {
+                        <p class="card-text">Book Is Not Available</p>
+
+                    }
+                    else
+                    {
+                    <p class="card-text">Available Quantity: @book.Quantity</p>
+                    }
+                    @Html.ActionLink("Details", "Details", new { id = book.BookID }, new { @class = "btn btn-primary" })
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

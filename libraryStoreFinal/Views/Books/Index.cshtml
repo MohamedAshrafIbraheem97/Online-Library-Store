@@ -1,0 +1,195 @@
+﻿@model PagedList.IPagedList<libraryStoreFinal.Models.Book>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+@if(TempData["PdfNotFound"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["PdfNotFound"]
+
+
+    </div>
+}
+@if (TempData["AvailableToBorrow"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["AvailableToBorrow"]
+    </div>
+
+}
+
+<h2>All Books</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+@using (Html.BeginForm("Index", "Books", null, FormMethod.Get, new { @class = "form-inline" }))
+{
+
+
+    <div class="form-group">
+        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Find By ..." })
+
+    </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-primary" />
+
+        </div>
+}
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+
+
+        </th>
+        <th>
+
+        </th>
+        <th>
+            Country
+        </th>
+        <th>
+            Form
+        </th>
+        <th>
+            Language
+        </th>
+        <th>
+            Publisher Name
+        </th>
+        <th>
+            Status
+        </th>
+
+
+        <th>
+            Publish Year
+        </th>
+        <th>
+            Quantity
+        </th>
+
+        <th>
+            Price
+        </th>
+        <th>
+            Position At Library
+        </th>
+        <th style="width:15%"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.ActionLink(item.BookTitle , "Details", new { id = item.BookID }) 
+
+            </td>
+            <td>
+                @Html.ActionLink("Borrow", "Borrow", new { id = item.BookID }, new { @class = "btn btn-primary", @id = "borrowBtn" })
+                @*<button  type="button" class="btn btn-primary" id="borrowBtn" onclick="BorrowBook (@item.BookID)" >Borrow</button>*@
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.CountryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Form.FormTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.LanguageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionAtLibrary)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookID }, new { @class = "label label-warning" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookID }, new { @class = "label label-danger" }) |
+                @Html.ActionLink("Download", "Download", new { id = item.BookID }, new { @class = "label label-primary" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+@section Scripts{
+
+    <script>
+        @*$(document).ready(function(){
+
+            if (@ViewBag.borrowed == true)
+            {
+                $("#success").show(3000);
+                $("#success").hide(5000);
+            }
+            else if (@ViewBag.borrowed == false){
+                $("#danger").show(3000);
+                $("#danger").hide(5000);
+            }
+
+
+        });*@
+
+            function BorrowBook (id) {
+                $.ajax({
+                    type: "GET",
+                    URL: "/Books/Borrow/"+ id,
+                    success: function (response) {
+                        if (response.result == 1) {
+
+                            alert("borrowed");
+                        }
+                        else if (response.result == 2){
+                            $("#danger").show(3000);
+                            $("#danger").hide(5000);
+                        }
+                        else {
+                            $("#danger").show(500);
+                            $("#danger").hide(500);
+                        }
+                    }
+
+            });
+        }
+
+
+
+
+
+
+    </script>
+
+
+}

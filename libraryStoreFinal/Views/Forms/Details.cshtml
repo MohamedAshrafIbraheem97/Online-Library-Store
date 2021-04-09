@@ -1,0 +1,26 @@
+﻿@model libraryStoreFinal.Models.Form
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Form</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FormTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormTitle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FormID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
